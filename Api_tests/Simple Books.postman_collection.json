@@ -1,0 +1,1918 @@
+{
+	"info": {
+		"_postman_id": "b4fbed1b-29e7-402f-b91a-d138664173ec",
+		"name": "Simple Books",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25899516"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/status",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List of Books-Positive Functional Testting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Check that the first results in the list are correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].id).to.eql(1);\r",
+									"    pm.expect(jsonData[0].name).to.eql(\"The Russian\");\r",
+									"    pm.expect(jsonData[0].type).to.eql(\"fiction\");\r",
+									"    pm.expect(jsonData[0].available).to.be.true;\r",
+									"});\r",
+									"pm.test(\"Check that the seconf results in the list are correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1].id).to.eql(2);\r",
+									"    pm.expect(jsonData[1].name).to.eql(\"Just as I Am\");\r",
+									"    pm.expect(jsonData[1].type).to.eql(\"non-fiction\");\r",
+									"    pm.expect(jsonData[1].available).to.be.false;\r",
+									"});\r",
+									"pm.test(\"Response contains ID\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"id\");});\r",
+									"pm.test(\"Response contains NAME\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"name\");});\r",
+									"pm.test(\"Response contains TYPE\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"type\");});\r",
+									"pm.test(\"Response contains available\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"available\");});\r",
+									"var data = pm.response.json();\r",
+									"pm.test('Number of books = ' + data.length, function () { // functia length nu poate fi folosita decat pentru liste\r",
+									"pm.expect(data.length).to.equal(6);});\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books-PositiveFunctional Testing-Type fiction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var data = pm.response.json();\r",
+									"pm.test('Number of books = ' + data.length, function () { \r",
+									"pm.expect(data.length).to.equal(4);});\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?type=fiction",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "fiction"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books-PositiveFunctional Testing-Type non-fiction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var data = pm.response.json();\r",
+									"pm.test('Number of books = ' + data.length, function () { \r",
+									"pm.expect(data.length).to.equal(2);});\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?type=non-fiction",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "non-fiction"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List of Books-Negative Functional Testing-invalid type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{pm.expect(responseData.error).to.eql(\"Invalid value for query parameter 'type'. Must be one of: fiction, non-fiction.\");});\r",
+									"pm.environment.set(\"variable_type\", \"variable_fantasy\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?type=Fantasy",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Fantasy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books - Equivalence Partitioning - Valid limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var data = pm.response.json();\r",
+									"pm.test('Number of books = ' + data.length, function () { \r",
+									"pm.expect(data.length).to.equal(6);});\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().id).to.eql(pm.environment.get(\"id\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?limit=8",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books - Equivalence Partitioning - invalid limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{pm.expect(responseData.error).to.eql(\"Invalid value for query parameter 'limit'. Must be greater than 0.\");});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?limit=-2",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "-2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books - Equivalence Partitioning - Invalid limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{pm.expect(responseData.error).to.eql(\"Invalid value for query parameter 'limit'. Cannot be greater than 20.\");});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?limit=25",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books - Limit value analysis - valid limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var data = pm.response.json();\r",
+									"pm.test('Number of books = ' + data.length, function () { \r",
+									"pm.expect(data.length).to.equal(6);});\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().id).to.eql(pm.environment.get(\"id\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?limit=0&limit=20",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books - Limit value analysis - invalid limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{pm.expect(responseData.error).to.eql(\"Invalid value for query parameter 'limit'. Cannot be greater than 20.\");});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?limit=21",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books - Equivalence Partitioning - alphanumeric limit - Invalid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"}); //limit: a number between 1 and 20."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?limit=hfghsufgjxdffg",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "hfghsufgjxdffg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Books - Equivalence Partitioning - decimail limit - separator is \".\" - Invalid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"}); //limit: a number between 1 and 20."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/books?limit=3.6",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3.6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains ID\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"id\");});\r",
+									"pm.test(\"Response contains bookId\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"bookId\");});\r",
+									"pm.test(\"Response contains customerName\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"customerName\");});\r",
+									"pm.test(\"Response contains createdBy\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"createdBy\");});\r",
+									"pm.test(\"Response contains quantity\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"quantity\");});\r",
+									"pm.test(\"Response contains timestamp\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"timestamp\");});\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "9632e7f79169737ad28fcc68f3d63644933046289c15705a8a926266e0368827",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains ID\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"id\");});\r",
+									"pm.test(\"Response contains bookId\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"bookId\");});\r",
+									"pm.test(\"Response contains customerName\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"customerName\");});\r",
+									"pm.test(\"Response contains createdBy\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"createdBy\");});\r",
+									"pm.test(\"Response contains quantity\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"quantity\");});\r",
+									"pm.test(\"Response contains timestamp\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"timestamp\");});\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/pQLcwmtcNSK_7ORCNSGkn",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"pQLcwmtcNSK_7ORCNSGkn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders - Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains ID\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"id\");});\r",
+									"pm.test(\"Response contains bookId\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"bookId\");});\r",
+									"pm.test(\"Response contains customerName\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"customerName\");});\r",
+									"pm.test(\"Response contains createdBy\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"createdBy\");});\r",
+									"pm.test(\"Response contains quantity\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"quantity\");});\r",
+									"pm.test(\"Response contains timestamp\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"timestamp\");});\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify - Update an order - Change cutomerName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains ID\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"id\");});\r",
+									"pm.test(\"Response contains bookId\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"bookId\");});\r",
+									"pm.test(\"Response contains customerName\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"customerName\");});\r",
+									"pm.test(\"Response contains createdBy\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"createdBy\");});\r",
+									"pm.test(\"Response contains quantity\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"quantity\");});\r",
+									"pm.test(\"Response contains timestamp\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"timestamp\");});\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/iEZwUtoyWFJHw6GIJOE6c",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"iEZwUtoyWFJHw6GIJOE6c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify - Update an order  - Negative Functional Testing - Add type/fiction and bookId5/nonfiction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains ID\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"id\");});\r",
+									"pm.test(\"Response contains bookId\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"bookId\");});\r",
+									"pm.test(\"Response contains customerName\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"customerName\");});\r",
+									"pm.test(\"Response contains createdBy\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"createdBy\");});\r",
+									"pm.test(\"Response contains quantity\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"quantity\");});\r",
+									"pm.test(\"Response contains timestamp\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"timestamp\");});\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Parsarea statusului din response body\", () => \r",
+									"{pm.expect(pm.response.status).to.eql(\"OK\");})\r",
+									"pm.test(\"Person is John\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.name).to.eql(\"John\");\r",
+									"  pm.expect(responseJson.id).to.eql(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/hh7ZOe9Wizhz3wlmyA37N",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"hh7ZOe9Wizhz3wlmyA37N"
+							],
+							"query": [
+								{
+									"key": "type ",
+									"value": "non-fiction",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "API Authentication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "d97bb69d1e68017e62f59ef489647884d04dbc9ffa2b562bb1c1d71301d2f35c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"clientName\": \"Giusol\",\r\n   \"clientEmail\": \"giusol@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/api-clients/",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api-clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.sendRequest(\"https://simple-books-api.glitch.me/orders\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"});\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.orderId).to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order -  Multiple booksId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.sendRequest(\"https://simple-books-api.glitch.me/orders\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"pm.sendRequest(\"https://simple-books-api.glitch.me/orders\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 1,\r\n  \"bookId\": 3,\r\n  \"bookId\": 5,\r\n  \"customerName\": \"John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order - Multiple customerName - Invalid Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"Unprocessable Entity\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"John\"\r\n  \"customerName\": \"Maria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order - Add quantity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.sendRequest(\"https://simple-books-api.glitch.me/orders\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"orderId\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 1,\r\n    \"quantity\": 1,\r\n  \"customerName\": \"John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an order -  Invalid  bookId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{pm.expect(responseData.error).to.eql(\"Invalid or missing bookId.\");});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 23,\r\n  \"customerName\": \"Arthas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an order - Book is not in stock",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{ pm.expect(responseData.error).to.eql(\"This book is not in stock. Try again later.\"); });\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 2,\r\n  \"customerName\": \"Arthas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{pm.expect(responseData.error).to.eql(\"Invalid or missing client name.\");});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/api-clients/",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api-clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Token/no body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response returns error\", function () {\r",
+									"   pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"var responseData = pm.response.json()\r",
+									"pm.test(\"Response returns correct error message\", function ()\r",
+									"{pm.expect(responseData.error).to.eql(\"Invalid or missing client name.\");});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Check that the status code of the request is the correct one\",() =>{\r",
+									"   pm.response.to.have.status(400)})\r",
+									"var data = pm.response.json();\r",
+									"pm.test(\"Response time is less than 5s\", () => {\r",
+									"pm.expect(pm.response.responseTime).to.be.below(5000);});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/api-clients/",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api-clients",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PATCH",
+			"item": [
+				{
+					"name": "Update an order - Change cutomerName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 204]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"Max\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me//orders/GIUhcwgpLk5-yurDbHt2E",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"",
+								"orders",
+								"GIUhcwgpLk5-yurDbHt2E"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an order - Add quantity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"quantity\": 3,\r\n  \"customerName\": \"John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me//orders/UlfEQw5Z53PKbqIJhTGq_",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"",
+								"orders",
+								"UlfEQw5Z53PKbqIJhTGq_"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an order  - Negative Functional Testing - Add type/fiction and bookId5/nonfiction",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"quantity\": 3,\r\n      \"bookId\": 5,\r\n      \"type\": \"fiction\",\r\n  \"customerName\": \"John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/hh7ZOe9Wizhz3wlmyA37N",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"hh7ZOe9Wizhz3wlmyA37N"
+							],
+							"query": [
+								{
+									"key": "type ",
+									"value": "non-fiction",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an order - Negative Functional Testing - bookId Max",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": \"Max\",\r\n  \"customerName\": \"John\"\r\n}"
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/8_LffFZZAvsYzuooSefWX",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"8_LffFZZAvsYzuooSefWX"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an order - Negative Functional Testing - customerName is number",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": 1,\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/8_LffFZZAvsYzuooSefWX",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"8_LffFZZAvsYzuooSefWX"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an  order - bookId has an invalid number",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": -1,\r\n  \"customerName\": \"John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/8_LffFZZAvsYzuooSefWX",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"8_LffFZZAvsYzuooSefWX"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "Delete an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/Obp-qiKHHn-UmpawO0T6T",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"Obp-qiKHHn-UmpawO0T6T"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/yqYu2ZVkc68Zrsqa5NMg9",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"yqYu2ZVkc68Zrsqa5NMg9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/r6PjCg_tvWsfJanQzT5yU",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"r6PjCg_tvWsfJanQzT5yU"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/Z5GnC5l5IlRsMKt-dvlAu",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"Z5GnC5l5IlRsMKt-dvlAu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/eNA2fT201ppbuX2WXmPWE",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"eNA2fT201ppbuX2WXmPWE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/ygCoqiotbzj-hxE3xEOip",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"ygCoqiotbzj-hxE3xEOip"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/gJ4DpcF-tSQD2bcsh9Bco",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"gJ4DpcF-tSQD2bcsh9Bco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/ZhjilwBL7LjJj6KmfV_qo",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"ZhjilwBL7LjJj6KmfV_qo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/OwgEU5EvYzl5C0nnd8aMA",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"OwgEU5EvYzl5C0nnd8aMA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://simple-books-api.glitch.me/orders/13jRV12-AG9kIFWqDUpB8",
+							"protocol": "https",
+							"host": [
+								"simple-books-api",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"orders",
+								"13jRV12-AG9kIFWqDUpB8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "9632e7f79169737ad28fcc68f3d63644933046289c15705a8a926266e0368827",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
