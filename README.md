@@ -128,4 +128,4 @@ The following elements are needed to be ready before the test execution phase be
 
 # 2 SQL section
 
-Created a database named 'orangehrm' and a table named 'dependents' with all the columns needed to save data per specifications. Performed different queries inside the sql file: [SQL_OrangeHRM.sql](https://github.com/Giusol/manual_testing_final_project_template/blob/main/SQL_OrangeHRM/SQL_OrangeHRM.sql)
+Created a database named 'Candidates' and three tables named 'JobTitleList', ‘CandidatesApplication’ and ‘CandidatesList’ with all the columns needed to save data per specifications. Performed different queries inside the sql file:  [SQL_OrangeHRM.sql](https://github.com/Giusol/manual_testing_final_project_template/blob/main/SQL_OrangeHRM/SQL_OrangeHRM.sql)
