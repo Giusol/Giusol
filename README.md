@@ -15,8 +15,7 @@ Tools used: JIRA, Zephyr Squad, Postman, MySQL Workbench.
 
 The Story below was created in JIRA and describes the functional specifications of the Organization module for which the final project is being created. 
 
-![image](<img width="468" alt="Imagine1" src="https://github.com/Giusol/manual_testing_final_project_template/assets/128817422/c4ef1eed-8ec3-4c0b-a4d5-74137fbaf192">)
-
+<img width="468" alt="Imagine1" src="https://github.com/Giusol/manual_testing_final_project_template/assets/128817422/eecc0428-53b2-43bf-9719-caa056fa5b25">
 
 
 # 1 Testing section
@@ -87,8 +86,8 @@ The testing process will be executed based on the above requirements for the Org
 Functional test cases were created in Zephyr Squad. Based on the analysis of the specifications, the test design techniques used for generating test cases.
 
 **Test cases:**
+<img width="498" alt="Screenshot 2023-07-24 163218" src="https://github.com/Giusol/manual_testing_final_project_template/assets/128817422/26b3c83b-7d2c-455c-a8a1-a6a346f87c71">
 
-![image](<img width="498" alt="Screenshot 2023-07-24 163218" src="https://github.com/Giusol/manual_testing_final_project_template/assets/128817422/d0eb919c-875f-4945-a553-caabf897ad6a">)
 
 The test cases with steps can be viewed here: [TestCases.pdf](https://github.com/Giusol/manual_testing_final_project_template/blob/main/AdminModule_test_cases.pdf/TestCases.pdf)
 
@@ -114,6 +113,7 @@ The following elements are needed to be ready before the test execution phase be
   (https://github.com/Giusol/manual_testing_final_project_template/blob/main/Api_tests/Simple%20Books.postman_collection.json)
   (https://github.com/Giusol/manual_testing_final_project_template/blob/main/Api_tests/Registru1.csv)
 * Full regression testing is needed after the bugs are fixed
+<img width="468" alt="Imagine2" src="https://github.com/Giusol/manual_testing_final_project_template/assets/128817422/95653f39-aae8-4522-b392-aa10da4c86b4">
 
 ## 1.7 Test Completion
 
