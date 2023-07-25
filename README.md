@@ -123,8 +123,7 @@ The following elements are needed to be ready before the test execution phase be
 * A number of 44 test cases were planned for execution and all of them were executed
 * A number of 5 total bugs were found, from which the priority is: 1 is high, 2 are medium and 2 are low.
 
-![image](<img width="468" alt="Imagine3" src="https://github.com/Giusol/manual_testing_final_project_template/assets/128817422/e6964dfa-112a-4dd9-a407-7028a3e08fdc">)
-
+<img width="468" alt="Imagine3" src="https://github.com/Giusol/manual_testing_final_project_template/assets/128817422/df920de6-536f-4f2b-a18b-e5bcbce8d089">
 
 # 2 SQL section
 
